@@ -17,7 +17,7 @@ buy_and_hold = 10000
 cash = 0
 POS = buy_and_hold
 
-# Set the length of the 3 mmoving averages in weeks
+# Set the length of the 3 moving averages in weeks
 #ma_short_length = int(input("Enter the short term MA in weeks: "),"3") #3
 #ma_medium_length = int(input("Enter the medium term MA in weeks: "),"7") #7
 #ma_long_length = int(input("Enter the long term MA in weeks: "),"30") #30
@@ -59,8 +59,8 @@ def recalculate_for_change(Change, val):
     val = round(((val//100)*Change) + val, 2)
     return val
 
-# function to calculate the current sub-contition   
-def sub_contition(SMA,MMA,LMA):
+# function to calculate the current sub-condition   
+def sub_condition(SMA,MMA,LMA):
     SC = 0
     if SMA > MMA and SMA > LMA and MMA > LMA:
         SC = 1 #"A"
@@ -108,7 +108,7 @@ def buy(Percentage):
     POS += percent_cash
     cash = cash - percent_cash
 
-# function to take action based on the sub-contition  
+# function to take action based on the sub-condition  
 def action(Previous_sub_condition, Current_sub_condition):
 
     #AB
@@ -221,9 +221,9 @@ with open(output_filename, mode='w') as output_file:
                     buy_and_hold_OUT = 0
                     POS_OUT = 0     
                    
-                # Calculate the current sub-contition
+                # Calculate the current sub-condition
                 if line_count >= ma_long_length:
-                    current_sub_condition = sub_contition(sma_value_out,mma_value_out,lma_value_out)
+                    current_sub_condition = sub_condition(sma_value_out,mma_value_out,lma_value_out)
 
                 # Create action function 
                 action(previous_sub_condition, current_sub_condition)
